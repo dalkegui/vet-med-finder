@@ -110,7 +110,7 @@ export default function Admin() {
   const uploadImage = async (file: File): Promise<string | null> => {
     try {
       const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
+      const fileName = `${crypto.randomUUID()}.${fileExt}`;
       const filePath = `${fileName}`;
 
       const { data, error } = await supabase.storage
@@ -121,7 +121,6 @@ export default function Admin() {
 
       return data.path;
     } catch (error) {
-      console.error('Upload error:', error);
       return null;
     }
   };
@@ -187,10 +186,9 @@ export default function Admin() {
       // Redirect to search
       navigate("/");
     } catch (error: any) {
-      console.error("Submit error:", error);
       toast({
         title: "Erro ao cadastrar",
-        description: error.message || "Ocorreu um erro inesperado",
+        description: "Ocorreu um erro ao cadastrar o medicamento. Verifique os dados e tente novamente.",
         variant: "destructive",
       });
     } finally {

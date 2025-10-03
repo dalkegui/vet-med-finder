@@ -82,7 +82,6 @@ const Index = () => {
         });
       }
     } catch (error: any) {
-      console.error("Search error:", error);
       toast({
         title: "Erro na busca",
         description: "Ocorreu um erro ao buscar medicamentos. Tente novamente.",

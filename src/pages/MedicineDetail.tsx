@@ -73,10 +73,9 @@ export default function MedicineDetail() {
 
       setMedicine(data);
     } catch (error: any) {
-      console.error("Fetch error:", error);
       toast({
         title: "Erro ao carregar medicamento",
-        description: error.message || "Medicamento não encontrado",
+        description: "Medicamento não encontrado ou ocorreu um erro ao carregar.",
         variant: "destructive",
       });
       navigate("/");
@@ -111,10 +110,9 @@ export default function MedicineDetail() {
 
       navigate("/");
     } catch (error: any) {
-      console.error("Delete error:", error);
       toast({
         title: "Erro ao excluir",
-        description: error.message || "Não foi possível excluir o medicamento",
+        description: "Não foi possível excluir o medicamento. Tente novamente.",
         variant: "destructive",
       });
     }

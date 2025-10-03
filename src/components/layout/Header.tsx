@@ -44,14 +44,16 @@ export function Header() {
   const checkAdminStatus = async (userId: string) => {
     try {
       const { data } = await supabase
-        .from("profiles")
-        .select("is_admin")
+        .from("user_roles")
+        .select("role")
         .eq("user_id", userId)
+        .eq("role", "admin")
         .single();
       
-      setIsAdmin(data?.is_admin || false);
+      setIsAdmin(!!data);
     } catch (error) {
-      console.error("Error checking admin status:", error);
+      // Silently handle - user is not admin
+      setIsAdmin(false);
     }
   };
 
